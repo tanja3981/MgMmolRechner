@@ -13,54 +13,73 @@
         android:id="@+id/l_mg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/l_switcher"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:gravity="center_horizontal"
-        android:layout_above="@+id/l_mmol">
+        android:layout_centerVertical="true">
 
-        <EditText
+        <android.tasc.ch.mmolmgrechner.ui.ClearableEditText
             android:id="@+id/tf_mg"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:imeOptions="actionDone"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:textAlignment="center"
-            android:textSize="42dip"
-            android:gravity="center_horizontal"/>
-
+            android:textSize="42dip" />
         <TextView
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:labelFor="@id/tf_mg"
+            android:gravity="center_horizontal"
+            android:labelFor="@+id/tf_mg"
             android:text="@string/l_mg"
-            android:textSize="42dip"
-            android:gravity="center_horizontal"/>
+            android:textSize="42dip" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/l_mmol"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true"        >
+
+        <ImageButton
+            android:id="@+id/bt_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/switcher"
+            />
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/l_mmol"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        >
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal">
 
-        <EditText
+        <android.tasc.ch.mmolmgrechner.ui.ClearableEditText
             android:id="@+id/tf_mmol"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:imeOptions="actionDone"
+            android:gravity="center_horizontal"
             android:inputType="numberDecimal"
             android:textAlignment="center"
-            android:textSize="42dip"
-            android:gravity="center_horizontal"/>
-
+            android:textSize="42dip" />
         <TextView
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:labelFor="@id/tf_mmol"
             android:text="@string/l_mmol"
-            android:textSize="42dip"
-            android:gravity="center_horizontal"/>
+            android:textSize="42dip" />
     </LinearLayout>
+
+
 </RelativeLayout>

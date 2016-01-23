@@ -6,13 +6,18 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 
 public class MmolMgRechner extends Activity {
 
 
     private Einheit currentEditor = null;
+    private Einheit lastEditor = null;
+    private int shadow = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,7 @@ public class MmolMgRechner extends Activity {
 
         final EditText mgText = (EditText) findViewById(R.id.tf_mg);
         final EditText mmolText = (EditText) findViewById(R.id.tf_mmol);
+        final ImageButton switchBt = (ImageButton) findViewById(R.id.bt_switch);
 
         mgText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -35,6 +41,9 @@ public class MmolMgRechner extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (shadow > 0) {
+                    return;
+                }
                 if (currentEditor == Einheit.MMOL) {
                     return;
                 }
@@ -53,8 +62,10 @@ public class MmolMgRechner extends Activity {
                     mmolText.setText("");
                 }
                 currentEditor = null;
+                lastEditor = Einheit.MG;
             }
         });
+
         mmolText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -68,8 +79,12 @@ public class MmolMgRechner extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (currentEditor == Einheit.MG)
+                if (shadow > 0) {
                     return;
+                }
+                if (currentEditor == Einheit.MG) {
+                    return;
+                }
                 currentEditor = Einheit.MMOL;
                 Log.d("MainActivity", "afterTextChanged");
                 String mmolValue = mmolText.getText().toString();
@@ -85,9 +100,22 @@ public class MmolMgRechner extends Activity {
                     mgText.setText("");
                 }
                 currentEditor = null;
+                lastEditor = Einheit.MMOL;
             }
         });
 
+        switchBt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //addShadow();
+                if(lastEditor == Einheit.MG){
+                    mmolText.setText(mgText.getText());
+                }
+                else if(lastEditor == Einheit.MMOL){
+                    mgText.setText(mmolText.getText());
+                }
+                //removeShadow();
+            }
+        });
     }
 
 
@@ -98,5 +126,12 @@ public class MmolMgRechner extends Activity {
         return true;
     }
 
+    private void addShadow() {
+        shadow++;
+    }
+
+    private void removeShadow() {
+        shadow--;
+    }
 
 }

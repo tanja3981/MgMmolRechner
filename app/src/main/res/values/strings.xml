@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Mg Mmol Rechner</string>
+    <string name="app_name">MgMmolRechner</string>
 
     <string name="l_mg">mg/dl</string>
     <string name="l_mmol">mmol/l</string>
